@@ -17,6 +17,10 @@
         </activity>
 
         <activity android:name=".LayoutTransitionDemo"/>
+
+        <activity android:name=".GradientDrawableDemo"/>
+
+        <activity android:name=".FlipperDemo"/>
     </application>
 
 </manifest>

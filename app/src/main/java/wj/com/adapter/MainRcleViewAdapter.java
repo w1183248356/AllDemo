@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wj.com.alldemo.R;
@@ -22,12 +23,16 @@ public class MainRcleViewAdapter extends RecyclerView.Adapter<MainRcleViewAdapte
 
     List<String> list;
 
-    public MainRcleViewAdapter(List<String> list){
-        this.list = list;
+    public MainRcleViewAdapter(){
+        this.list = new ArrayList<>();
     }
 
     public List<String> getList(){
         return list;
+    }
+
+    public void setList(List<String> list){
+        this.list = list;
     }
 
 

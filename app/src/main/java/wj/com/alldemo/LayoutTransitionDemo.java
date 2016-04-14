@@ -31,7 +31,7 @@ public class LayoutTransitionDemo extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_demo1);
+        setContentView(R.layout.view_layout_transition);
 
         parent = (LinearLayout) findViewById(R.id.lv_parent);
         initTransition();

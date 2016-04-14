@@ -16,18 +16,23 @@ import wj.com.adapter.MainRcleViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rcleView;
+    private List<String> list;
+    private MainRcleViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rcleView = (RecyclerView) findViewById(R.id.rcleView);
+        initView();
+        initDate();
+    }
+
+    public void initView(){
         rcleView.setLayoutManager(new LinearLayoutManager(this));
         rcleView.setHasFixedSize(true);
         rcleView.setItemAnimator(new DefaultItemAnimator());
-        List<String> list = new ArrayList<>();
-        list.add("wj.com.alldemo.LayoutTransitionDemo");
-        final MainRcleViewAdapter adapter = new MainRcleViewAdapter(list);
+        adapter = new MainRcleViewAdapter();
         rcleView.setAdapter(adapter);
 
         rcleView.setOnItemClickListener(new RecyclerView.OnItemClickListener() {
@@ -41,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    public void initDate(){
+        list = new ArrayList<>();
+        list.add("wj.com.alldemo.LayoutTransitionDemo");
+        list.add("wj.com.alldemo.GradientDrawableDemo");
+        list.add("wj.com.alldemo.FlipperDemo");
+        adapter.setList(list);
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ViewFlipper android:id="@+id/viewFlipper"
+        android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <!-- 第一个页面 -->
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:gravity="center">
+            <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:src="@mipmap/d" />
+        </LinearLayout>
+        <!-- 第二个页面 -->
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:gravity="center">
+            <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:src="@mipmap/a"
+                android:gravity="center" />
+        </LinearLayout>
+        <!-- 第三个页面 -->
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:gravity="center">
+
+            <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:src="@mipmap/b"
+                android:gravity="center" />
+        </LinearLayout>
+        <!-- 第四个页面 -->
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:gravity="center">
+
+            <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:src="@mipmap/c"
+                android:gravity="center" />
+        </LinearLayout>
+    </ViewFlipper>
+
+</LinearLayout>
