@@ -1,0 +1,50 @@
+[33mcommit 53a6af28bb8bd5b963c094de9c81c207224a22e8[m
+Author: wangj <wangj@11wlw.com>
+Date:   Thu Apr 14 12:42:40 2016 +0800
+
+    all
+
+[33mcommit fccc7d71caeb96deafc09c47f10ff5975852ece4[m
+Author: wangj <wangj@11wlw.com>
+Date:   Thu Apr 14 12:40:46 2016 +0800
+
+    test
+
+[33mcommit 5ddcb8ef5d510e19b22e45cc00f20e14d6e8acfa[m
+Merge: 4d33760 c98b3ce
+Author: wangj <wangj@11wlw.com>
+Date:   Thu Apr 14 12:38:47 2016 +0800
+
+    Merge branch 'master' of github.com:w1183248356/AllDemo
+
+[33mcommit 4d337604be739f3099ef4b16b7252c9352a62081[m
+Author: wangj <wangj@11wlw.com>
+Date:   Thu Apr 14 12:35:25 2016 +0800
+
+    second
+
+[33mcommit 294a57c3c7c87b028cd93d8ee9694430c4931d77[m
+Author: wangj <wangj@11wlw.com>
+Date:   Thu Apr 14 11:42:41 2016 +0800
+
+    first
+
+[33mcommit c98b3cee7c430d47685c7ffaa86b7f908fec1669[m
+Author: wangj <wangj@11wlw.com>
+Date:   Thu Apr 14 11:39:02 2016 +0800
+
+    Revert ":lollipop: Added .gitattributes & .gitignore files"
+    
+    This reverts commit 73d05933f5bbfb06a2f82c583aa6bb296fda0b29.
+
+[33mcommit f3a41488aa2d9dacb7fc88cd5b9c1cf860b47612[m
+Author: w1183248356 <499026140@qq.com>
+Date:   Thu Apr 14 11:38:47 2016 +0800
+
+    Create README.md
+
+[33mcommit 73d05933f5bbfb06a2f82c583aa6bb296fda0b29[m
+Author: wangj <wangj@11wlw.com>
+Date:   Thu Apr 14 11:35:17 2016 +0800
+
+    :lollipop: Added .gitattributes & .gitignore files
