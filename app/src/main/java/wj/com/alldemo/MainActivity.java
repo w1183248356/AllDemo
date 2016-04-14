@@ -11,7 +11,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.MainRcleViewAdapter;
+import wj.com.adapter.MainRcleViewAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         rcleView.setHasFixedSize(true);
         rcleView.setItemAnimator(new DefaultItemAnimator());
         List<String> list = new ArrayList<>();
-        list.add("wj.com.wjalldemo.LayoutTransitionDemo");
+        list.add("wj.com.alldemo.LayoutTransitionDemo");
         final MainRcleViewAdapter adapter = new MainRcleViewAdapter(list);
         rcleView.setAdapter(adapter);
 
