@@ -27,6 +27,13 @@ public class MainRcleViewAdapter extends RecyclerView.Adapter<MainRcleViewAdapte
         this.list = new ArrayList<>();
     }
 
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = View.inflate(parent.getContext(), R.layout.item_rcleview, null);
+        return new ViewHolder(view);
+    }
+
+
     public List<String> getList(){
         return list;
     }
@@ -36,11 +43,11 @@ public class MainRcleViewAdapter extends RecyclerView.Adapter<MainRcleViewAdapte
     }
 
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i, int i1) {
-        View view = View.inflate(viewGroup.getContext(), R.layout.item_rcleview, null);
-        return new ViewHolder(view);
-    }
+//    @Override
+//    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i, int i1) {
+//        View view = View.inflate(viewGroup.getContext(), R.layout.item_rcleview, null);
+//        return new ViewHolder(view);
+//    }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {

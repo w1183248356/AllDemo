@@ -8,7 +8,7 @@ import android.widget.ViewFlipper;
 /**
  * @author wangjian
  * @title FlipperDemo
- * @description
+ * @description  轮播动画
  * @modifier
  * @date
  * @since 2016/4/14 17:57
