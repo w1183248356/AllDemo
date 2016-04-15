@@ -24,4 +24,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile files('libs/SmartAndroid2.0.jar')
+    compile files('libs/recycleview.jar')
+    compile ('com.android.support:design:23.3.0'){
+        exclude module: 'recyclerview-v7'
+    }
+
+//    消除重复加载的包
+//    exclude module: 'support-v4'
+//    exclude module: 'appcompat-v7'
+//    exclude module: 'recyclerview-v7'
 }

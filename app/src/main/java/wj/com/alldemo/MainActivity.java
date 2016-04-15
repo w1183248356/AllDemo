@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("wj.com.alldemo.LayoutTransitionDemo");
         list.add("wj.com.alldemo.GradientDrawableDemo");
         list.add("wj.com.alldemo.FlipperDemo");
+        list.add("wj.com.alldemo.SwipeToLoadLayoutDemo");
         adapter.setList(list);
     }
 }
