@@ -22,7 +22,7 @@
 
         <activity android:name=".FlipperDemo"/>
 
-        <activity android:name=".SwipeToLoadLayoutDemo"/>
+        <activity android:name=".SwipeToLoadLayoutDemo" android:theme="@style/AppThemeNo"/>
     </application>
 
 </manifest>

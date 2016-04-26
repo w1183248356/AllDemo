@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -19,7 +18,7 @@ import android.view.MenuItem;
  * @date
  * @since 2016/4/15 15:13
  **/
-public class SwipeToLoadLayoutDemo extends AppCompatActivity
+public class SwipeToLoadLayoutDemo extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static final String ITEM_ID = "itemId";
     private DrawerLayout drawerLayout;
@@ -42,12 +41,13 @@ public class SwipeToLoadLayoutDemo extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.view_swipetoloadlayout);
+        initView();
     }
 
     public void initView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drwrView);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
-
         navigationView.setNavigationItemSelectedListener(this);
     }
 

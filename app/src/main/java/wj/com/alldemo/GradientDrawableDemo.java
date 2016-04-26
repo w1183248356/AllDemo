@@ -1,6 +1,5 @@
 package wj.com.alldemo;
 
-import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.widget.Button;
  * @date
  * @since 2016/4/14 16:10
  **/
-public class GradientDrawableDemo extends Activity{
+public class GradientDrawableDemo extends BaseActivity{
     private Button btn1;
     private Button btn2;
     private Button btn3;
