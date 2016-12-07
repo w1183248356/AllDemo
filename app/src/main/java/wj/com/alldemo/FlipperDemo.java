@@ -1,6 +1,5 @@
 package wj.com.alldemo;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.ViewFlipper;
@@ -8,12 +7,12 @@ import android.widget.ViewFlipper;
 /**
  * @author wangjian
  * @title FlipperDemo
- * @description
+ * @description  轮播动画
  * @modifier
  * @date
  * @since 2016/4/14 17:57
  **/
-public class FlipperDemo extends Activity {
+public class FlipperDemo extends BaseActivity {
     ViewFlipper viewFlipper = null;
     float startX;
     @Override

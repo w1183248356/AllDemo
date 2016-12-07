@@ -2,7 +2,6 @@ package wj.com.alldemo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +13,7 @@ import java.util.List;
 import wj.com.adapter.MainRcleViewAdapter;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private RecyclerView rcleView;
     private List<String> list;
     private MainRcleViewAdapter adapter;
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("wj.com.alldemo.LayoutTransitionDemo");
         list.add("wj.com.alldemo.GradientDrawableDemo");
         list.add("wj.com.alldemo.FlipperDemo");
+        list.add("wj.com.alldemo.SwipeToLoadLayoutDemo");
         adapter.setList(list);
     }
 }

@@ -6,7 +6,6 @@ import android.animation.Keyframe;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import android.widget.Toast;
  * @date
  * @since 2016/4/13 14:00
  **/
-public class LayoutTransitionDemo extends Activity {
+public class LayoutTransitionDemo extends BaseActivity {
     private LinearLayout parent;
     private int i = 0;
 

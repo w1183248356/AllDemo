@@ -27,6 +27,7 @@ public class MainRcleViewAdapter extends RecyclerView.Adapter<MainRcleViewAdapte
         this.list = new ArrayList<>();
     }
 
+
     public List<String> getList(){
         return list;
     }

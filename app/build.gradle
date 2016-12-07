@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "wj.com.alldemo"
-        minSdkVersion 21
+        minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -17,21 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-allprojects {
-    repositories {
-        jcenter()
-        mavenCentral()
-        maven { url "https://jitpack.io" }
-        maven { url "https://clojars.org/repo/" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "http://117.121.49.158:8081/nexus/content/repositories/thirdparty/" }
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
 
 dependencies {

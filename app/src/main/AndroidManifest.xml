@@ -21,6 +21,8 @@
         <activity android:name=".GradientDrawableDemo"/>
 
         <activity android:name=".FlipperDemo"/>
+
+        <activity android:name=".SwipeToLoadLayoutDemo" android:theme="@style/AppThemeNo"/>
     </application>
 
 </manifest>
