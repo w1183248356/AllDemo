@@ -1,2 +1,2 @@
-include ':app', ':library', ':swipeToLoadLayout' ,':network'
+include ':app', ':library' ,':network'
 
