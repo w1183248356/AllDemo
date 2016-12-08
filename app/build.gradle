@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
 
 android {
     compileSdkVersion 23
@@ -11,20 +15,183 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    //签名文件
+    signingConfigs {
+        debug {
+            try {
+                storeFile file("../apkinfo/qpwa_b2b_app.jks")
+                storePassword KEYSTORE_PASSWORD
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+            } catch (ex) {
+                throw new InvalidUserDataException('You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties')
+            }
         }
+
+        develop {
+            try {
+                storeFile file("../apkinfo/qpwa_b2b_app.jks")
+                storePassword KEYSTORE_PASSWORD
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+            } catch (ex) {
+                throw new InvalidUserDataException('You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties')
+            }
+        }
+
+        release {
+            try {
+                storeFile file("../apkinfo/qpwa_b2b_app.jks")
+                storePassword KEYSTORE_PASSWORD
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+            } catch (ex) {
+                throw new InvalidUserDataException('You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties')
+            }
+        }
+
+
     }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "release", "false"
+            buildConfigField "int", "BUILD_ENVIRONMENT", "3"
+            resValue "string", "app_name", "物恋订货平台_Debug"
+            versionNameSuffix "_debug"//将debug版本的版本名设置为_debug 便于查看
+            //  applicationIdSuffix ".debug"//将debug版本的包名设置为.debug以便能够同时在一台设备上安装debug和release版本的apk
+            manifestPlaceholders = [UMENG_APPKEY   : "55ffd2a8e0f55afca70031d7",
+                                    BAIDUMAP_APIKEY: "dpeaUcrqwDynamndPkacGly0",
+                                    EASEMOB_APPKEY : "qpwa#b2b"]
+            minifyEnabled false
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.debug
+        }
+
+        develop {
+            buildConfigField "boolean", "release", "false"
+            buildConfigField "int", "BUILD_ENVIRONMENT", "2"
+            resValue "string", "app_name", "物恋订货平台_Dev"
+            versionNameSuffix "_develop"//将debug版本的版本名设置为_develop 便于查看
+            // applicationIdSuffix ".develop"//将debug版本的包名设置为.develop以便能够同时在一台设备上安装debug和release版本的apk
+            manifestPlaceholders = [UMENG_APPKEY   : "56fbbdd4e0f55ad7c5000234",
+                                    BAIDUMAP_APIKEY: "dpeaUcrqwDynamndPkacGly0",
+                                    EASEMOB_APPKEY : "11wlw#b2b"]
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.develop
+            // 保留debug信息
+            //debuggable true
+        }
+
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "release", "true"
+            buildConfigField "int", "BUILD_ENVIRONMENT", "1"
+            resValue "string", "app_name", "物恋订货平台"
+            manifestPlaceholders = [UMENG_APPKEY   : "5629fefb67e58e7583001c2a",
+                                    BAIDUMAP_APIKEY: "dpeaUcrqwDynamndPkacGly0",
+                                    EASEMOB_APPKEY : "11wlw#b2b"]
+
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+        }
+        //多渠道打包
+        applicationVariants.all { variant ->
+            //动态替换AppName
+            def buildType = variant.buildType
+            if (buildType.applicationIdSuffix) {
+                def defaultPackageId = variant.applicationId.replaceAll(buildType.applicationIdSuffix, "")
+                variant.mergeResources.doLast {
+                    println "-------开始替换layout下的包名----------"
+                    def dir = file("${buildDir}/intermediates/res/merged/${variant.dirName}/layout")
+                    dir.listFiles().each { f ->
+                        String content = f.getText("utf-8")
+                        content = content.replaceAll("res/${defaultPackageId}", "res/${variant.applicationId}")
+                        f.write(content, "utf-8")
+                    }
+                }
+            }
+            //动态替换apk文件名字
+            variant.outputs.each { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.endsWith(".apk")) {
+                    // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk
+                    def fileName
+                    if (variant.buildType.name == "release") {
+                        fileName = "wlwb2b_v${defaultConfig.versionName}_${variant.productFlavors[0].name}_release_${releaseTime()}.apk"
+                    } else if (variant.buildType.name == "develop") {
+                        fileName = "wlwb2b_v${defaultConfig.versionName}_${variant.productFlavors[0].name}_develop_${releaseTime()}.apk"
+                    } else {
+                        fileName = "wlwb2b_v${defaultConfig.versionName}_${variant.productFlavors[0].name}_debug_${releaseTime()}.apk"
+                    }
+                    println "-------替换apk文件名字----------"
+                    output.outputFile = new File(outputFile.parent, fileName)
+                }
+
+                // 删除unaligned apk
+                if (output.zipAlign != null) {
+                    output.zipAlign.doLast {
+                        output.zipAlign.inputFile.delete()
+                    }
+                }
+            }
+        }
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+    }
+    // 多渠道打包配置文件
+    productFlavors {
+        official {}
+        /*taobao {}*/
+    }
+
+    //批量修改
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [CHANNEL_PARAM: name]
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.1.1'
     compile 'com.qpwa.app.lib:com-qpwa-app:1.0.6@aar'
+    debugCompile project(path: ':network', configuration: 'debug')
+    developCompile project(path: ':network', configuration: 'develop')
+    releaseCompile project(path: ':network', configuration: 'release')
+
+    //mvp框架
+    compile 'info.android15.nucleus:nucleus-support-v4:4.0.0'
+    compile 'info.android15.nucleus:nucleus-support-v7:4.0.0'
+    compile 'frankiesardo:icepick:3.2.0'
+    provided 'frankiesardo:icepick-processor:3.2.0'
+
+    //内存溢出检测工具
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    developCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+    //图片上传
+    compile 'cn.finalteam:galleryfinal:1.4.8.7'
+
 }
 
 ext {
